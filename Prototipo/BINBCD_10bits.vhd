@@ -6,7 +6,7 @@ use ieee.std_logic_1164.all;
 entity BINBCD_10bits is
 	port(
 		SW: in std_logic_vector(9 downto 0);
-		BCD: out std_logic_vector(12 downto 0)
+		BCD: out std_logic_vector(11 downto 0)
 	);
 end BINBCD_10bits;
 
@@ -19,7 +19,7 @@ architecture Hardware of BINBCD_10bits is
 		);
 	end component;
 
-	
+	signal nada: std_logic;
 	constant zero: std_logic:= '0';
 	signal s1,s2,s3,s4: std_logic; -- conversor1
 	signal s5,s6,s7,s8: std_logic; -- conversor2
@@ -52,7 +52,7 @@ begin
 	conversor12: conversorModulo port map(o19,o20,o21,o22,BCD(8),BCD(7),BCD(6),BCD(5));
 	conversor13: conversorModulo port map(o23,o24,o25,SW(1),BCD(4),BCD(3),BCD(2),BCD(1));
 	
-	conversor14: conversorModulo port map(e4,e0,e1,e2,BCD(12),BCD(11),BCD(10),BCD(9));
+	conversor14: conversorModulo port map(e4,e0,e1,e2,nada,BCD(11),BCD(10),BCD(9));
 	
 	BCD(0) <= SW(0);
 end Hardware;
