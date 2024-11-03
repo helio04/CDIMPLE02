@@ -1,39 +1,39 @@
 library ieee;
 use ieee.std_logic_1164.all;
 
-entity Somador10bits is
-	port(A,B: in std_logic_vector(9 downto 0);
-		  cin: in std_logic;
+entity somador10bits is
+	port(entradaSomador, max, min: in std_logic_vector(9 downto 0);
+		  c_in, up_down: in std_logic;
 		  S: out std_logic_vector(9 downto 0));
-end Somador10bits;
+end somador10bits;
 
-architecture Hardware of Somador10bits is
-	component somador_completo
-		port (a, b, cin: in std_logic;
-		  s, cout: out std_logic);
+architecture Hardware of somador10bits is
+	component somador1bit
+		port (entrada, max, min, c_0, ud: in std_logic;
+		  saida, c: out std_logic);
 	end component;
 	
-	signal vaium: std_logic_vector(8 downto 0);
+	signal c_0: std_logic_vector(8 downto 0);
 	
 begin 
-	Somador1: somador_completo
-		port map(A(0),B(0),cin,S(0),vaium(0));
-	Somador2: somador_completo
-		port map(A(1),B(1),vaium(0),S(1),vaium(1));
-	Somador3: somador_completo
-		port map(A(2),B(2),vaium(1),S(2),vaium(2));
-	Somador4: somador_completo
-		port map(A(3),B(3),vaium(2),S(3),vaium(3));
-	Somador5: somador_completo
-		port map(A(4),B(4),vaium(3),S(4),vaium(4));
-	Somador6: somador_completo
-		port map(A(5),B(5),vaium(4),S(5),vaium(5));
-	Somador7: somador_completo
-		port map(A(6),B(6),vaium(5),S(6),vaium(6));
-	Somador8: somador_completo
-		port map(A(7),B(7),vaium(6),S(7),vaium(7));
-	Somador9: somador_completo
-		port map(A(8),B(8),vaium(7),S(8),vaium(8));
-	Somador10: somador_completo
-		port map(A(9),B(9),vaium(8),S(9),open);
+	Somador1: somador1bit
+		port map(entradaSomador(0),max(0),min(0),c_in,up_down,S(0),c_0(0));
+	Somador2: somador1bit
+		port map(entradaSomador(1),max(1),min(1),c_0(0),up_down,S(1),c_0(1));
+	Somador3: somador1bit
+		port map(entradaSomador(2),max(2),min(2),c_0(1),up_down,S(2),c_0(2));
+	Somador4: somador1bit
+		port map(entradaSomador(3),max(3),min(3),c_0(2),up_down,S(3),c_0(3));
+	Somador5: somador1bit
+		port map(entradaSomador(4),max(4),min(4),c_0(3),up_down,S(4),c_0(4));
+	Somador6: somador1bit
+		port map(entradaSomador(5),max(5),min(5),c_0(4),up_down,S(5),c_0(5));
+	Somador7: somador1bit
+		port map(entradaSomador(6),max(6),min(6),c_0(5),up_down,S(6),c_0(6));
+	Somador8: somador1bit
+		port map(entradaSomador(7),max(7),min(7),c_0(6),up_down,S(7),c_0(7));
+	Somador9: somador1bit
+		port map(entradaSomador(8),max(8),min(8),c_0(7),up_down,S(8),c_0(8));
+	Somador10: somador1bit
+		port map(entradaSomador(9),max(9),min(9),c_0(8),up_down,S(9),open);
 end Hardware;
