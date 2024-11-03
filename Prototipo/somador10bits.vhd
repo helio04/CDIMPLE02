@@ -5,9 +5,9 @@ entity somador10bits is
 	port(entradaSomador, max, min: in std_logic_vector(9 downto 0);
 		  c_in, up_down: in std_logic;
 		  S: out std_logic_vector(9 downto 0));
-end Somador10bits;
+end somador10bits;
 
-architecture Hardware of Somador10bits is
+architecture Hardware of somador10bits is
 	component somador1bit
 		port (entrada, max, min, c_0, ud: in std_logic;
 		  saida, c: out std_logic);
