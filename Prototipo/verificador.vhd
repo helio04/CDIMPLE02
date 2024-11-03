@@ -25,10 +25,10 @@ component comparador is
 		  AmaiorB, AmenorB, AigualB: out std_logic);
 end component;
 signal maiorquemax,menorquemin, loadgen, gnd : std_logic;
-signal entradaregistrador, saidaregistrador : std_logic_vector(9 downto 0);
+signal entradaregistrador, saidaregistrador : std_logic_vector(9 downto 0) := "0000000000";
 begin
-comparamax : comparador port map(saidaregistrador, entradavmax, maiorquemax, gnd, gnd);
-comparamin : comparador port map(saidaregistrador, entradavmin, gnd, menorquemin, gnd);
+comparamax : comparador port map(entradavalor, entradavmax, maiorquemax, gnd, gnd);
+comparamin : comparador port map(entradavalor, entradavmin, gnd, menorquemin, gnd);
 loadgen <= ((not maiorquemax) and (not menorquemin));
 regisvalor : registrador10bits port map(entradaregistrador,clockver, '1', saidaregistrador);
 muxfim : mux_2x1_10bits port map(loadgen, saidaregistrador, entradavalor, entradaregistrador);

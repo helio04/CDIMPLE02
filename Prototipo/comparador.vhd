@@ -45,7 +45,7 @@ begin
 	
 	----- A < B
 	
-	AmenorB <= not maior and not igual;
+	AmenorB <= (not maior) and (not igual);
 	AmaiorB <= maior;
 	AigualB <= igual;
 	
